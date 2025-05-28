@@ -1,40 +1,31 @@
-# Number of pod replicas
 replicaCount: 1
 
-# Mongo Express container image details
 image:
   repository: mongo-express
   pullPolicy: IfNotPresent
   tag: "latest"
 
-# If you're using a private registry
 imagePullSecrets: []
 
-# Chart naming overrides
 nameOverride: ""
 fullnameOverride: ""
 
-# Kubernetes service account settings
 serviceAccount:
   create: true
   automount: true
   annotations: {}
   name: ""
 
-# Optional pod annotations and labels
 podAnnotations: {}
 podLabels: {}
 
-# Pod-level security context
 podSecurityContext: {}
 securityContext: {}
 
-# Kubernetes Service
 service:
-  type: LoadBalancer  # <— This exposes Mongo Express to the browser
+  type: LoadBalancer
   port: 8081
 
-# Ingress settings (disabled by default)
 ingress:
   enabled: false
   className: ""
@@ -46,34 +37,23 @@ ingress:
           pathType: ImplementationSpecific
   tls: []
 
-# Resources (optional)
 resources: {}
-#   limits:
-#     cpu: 100m
-#     memory: 128Mi
-#   requests:
-#     cpu: 100m
-#     memory: 128Mi
 
-# MongoDB credentials (used to connect to MongoDB instance)
 mongodb:
+  server: mongo     # ✅ Required to connect to the MongoDB service
   username: root
   password: example
   database: test
 
-# Horizontal Pod Autoscaler (disabled by default)
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
-# Volumes (optional)
 volumes: []
 volumeMounts: []
 
-# Node selectors and scheduling
 nodeSelector: {}
 tolerations: []
 affinity: {}
