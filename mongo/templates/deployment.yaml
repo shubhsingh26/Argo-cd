@@ -41,12 +41,12 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: MONGO_INITDB_ROOT_USERNAME
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
               value: {{ .Values.mongodb.username | quote }}
-            - name: MONGO_INITDB_ROOT_PASSWORD
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
               value: {{ .Values.mongodb.password | quote }}
-            - name: MONGO_INITDB_DATABASE
-              value: {{ .Values.mongodb.database | quote }}
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: {{ .Values.mongodb.server | default "mongo" | quote }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
