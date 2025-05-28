@@ -61,21 +61,6 @@ mongodb:
   password: example
   database: test
 
-# Health checks
-livenessProbe:
-  httpGet:
-    path: /
-    port: 8081
-  initialDelaySeconds: 15
-  periodSeconds: 10
-
-readinessProbe:
-  httpGet:
-    path: /
-    port: 8081
-  initialDelaySeconds: 5
-  periodSeconds: 10
-
 # Horizontal Pod Autoscaler (disabled by default)
 autoscaling:
   enabled: false
